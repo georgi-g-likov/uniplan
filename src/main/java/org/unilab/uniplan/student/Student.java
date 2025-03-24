@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.unilab.uniplan.common.model.Person;
+import org.unilab.uniplan.course.Course;
 import java.util.UUID;
 
 @Getter
@@ -18,15 +19,15 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Student")
+@Table(name = "STUDENT")
 public class Student extends Person {
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id", nullable = false)
+    @JoinColumn(name = "COURSE_ID", nullable = false)
     private Course course;
 
-    @Column(name = "student_name", nullable = false, length = 255)
+    @Column(name = "STUDENT_NAME", nullable = false, length = 255)
     private String studentName;
 
-    @Column(name = "faculty_number", unique = true, nullable = false, length = 512)
+    @Column(name = "FACULTY_NUMBER", unique = true, nullable = false, length = 512)
     private String facultyNumber;
 }
