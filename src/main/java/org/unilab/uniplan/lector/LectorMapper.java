@@ -32,6 +32,7 @@ public interface LectorMapper {
     @Mapping(target = "email", source = "lectorDto.email")
     @Mapping(target = "firstName", source = "lectorDto.firstName")
     @Mapping(target = "lastName", source = "lectorDto.lastName")
+    @Mapping(target = "faculty.id", source = "facultyId")
     @Mapping(target = "id", ignore = true)
     void updateEntityFromDto(final LectorDto lectorDto, @MappingTarget final Lector lector);
 }
