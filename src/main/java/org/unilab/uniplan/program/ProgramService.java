@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.unilab.uniplan.program.dto.ProgramDto;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,6 +17,7 @@ public class ProgramService{
 
     private final ProgramRepository programRepository;
     private final ProgramMapper programMapper;
+    private String PROGRAM_NOT_FOUND = "Program with ID {0} not found.";
 
     @Transactional
     public ProgramDto createProgram(ProgramDto request) {
@@ -47,7 +49,12 @@ public class ProgramService{
 
     public void deleteProgram(UUID id) {
         final Program program = programRepository.findById(id)
-                                            .orElseThrow(() -> new EntityNotFoundException("Program not found"));
+                                                 .orElseThrow(() -> new RuntimeException(
+                                                     MessageFormat.format(
+                                                         PROGRAM_NOT_FOUND,
+                                                         id
+                                                     )
+                                                 ));
 
         programRepository.delete(program);
     }
