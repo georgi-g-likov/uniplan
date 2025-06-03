@@ -98,7 +98,9 @@ class LectorServiceTest {
     @Test
     void testUpdateLectorShouldUpdateAndReturnDtoIfFound() {
         when(lectorRepository.findById(id)).thenReturn(Optional.of(lector));
-        doAnswer(invocation -> null).when(lectorMapper).updateEntityFromDto(lectorDto, lector);
+        doAnswer(invocation -> null).when(lectorMapper)
+                                    .updateEntityFromDto(lectorDto,
+                                                         lector);
         when(lectorRepository.save(lector)).thenReturn(lector);
         when(lectorMapper.toDto(lector)).thenReturn(lectorDto);
 
